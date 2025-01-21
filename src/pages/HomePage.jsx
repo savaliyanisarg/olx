@@ -1,15 +1,15 @@
 import React from "react";
-import Header from "../components/header.jsx"; // Adjust path if necessary
-import Footer from "..components/footer.jsx"; // Adjust path if necessary
-import ProductList from "..pages/product.jsx"; // Adjust path if necessary
-import "../styles/HomePage.css"; // Optional: Add a custom stylesheet for the homepage
+import Header from "../components/header";
+import Footer from "../components/footer";
+import ProductList from "../components/product"; // Adjust if necessary
+import "../styles/HomePage.css";
 
 const HomePage = () => {
   return (
-    <div className="homepage-container">
+    <div>
       <Header />
-      <main className="main-content">
-        <h1>Welcome to Our Store</h1>
+      <main>
+        <h1>Welcome to the Home Page</h1>
         <ProductList />
       </main>
       <Footer />

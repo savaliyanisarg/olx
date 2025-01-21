@@ -57,7 +57,7 @@ const Header = () => {
       </header>
 
       {/* Footer Section (Imported Footer) */}
-      <Footer />
+      
     </div>
   );
 };
