@@ -9,7 +9,7 @@ const HomePage = () => {
     <div>
       <Header />
       <main>
-        <h1>Welcome to the Home Page</h1>
+        {/* <h1>Welcome to the Home Page</h1> */}
         <ProductList />
       </main>
       <Footer />

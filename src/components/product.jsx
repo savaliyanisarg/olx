@@ -1,60 +1,135 @@
 import React from "react";
-import "../styles/ProductList.css"; // Adjust relative to the actual file location
+import "../styles/ProductList.css"; // CSS for styles
 
-const ProductList = () => {
-  // Sample product data
-  const products = [
+const ProductListing = () => {
+  // Sample Data for Products
+  const lastSearchProducts = [
     {
       id: 1,
-      image: "https://via.placeholder.com/150",
-      title: "Honda Civic 2020",
-      price: "₹ 9,50,000",
-      location: "Mumbai, Maharashtra",
-      posted: "2 days ago",
+      name: "Honda City 2020",
+      price: "₹12,00,000",
+      image: "https://via.placeholder.com/200?text=Honda+City",
     },
     {
       id: 2,
-      image: "https://via.placeholder.com/150",
-      title: "iPhone 13 Pro Max",
-      price: "₹ 1,20,000",
-      location: "Bangalore, Karnataka",
-      posted: "1 week ago",
+      name: "Samsung Galaxy S22",
+      price: "₹80,000",
+      image: "https://via.placeholder.com/200?text=Samsung+Galaxy",
     },
     {
       id: 3,
-      image: "https://via.placeholder.com/150",
-      title: "Yamaha R15 V3",
-      price: "₹ 1,50,000",
-      location: "Delhi",
-      posted: "3 days ago",
+      name: "iPhone 13",
+      price: "₹1,00,000",
+      image: "https://via.placeholder.com/200?text=iPhone+13",
     },
     {
       id: 4,
-      image: "https://via.placeholder.com/150",
-      title: "Samsung 55\" 4K TV",
-      price: "₹ 50,000",
-      location: "Hyderabad, Telangana",
-      posted: "5 hours ago",
+      name: "Yamaha R15",
+      price: "₹1,50,000",
+      image: "https://via.placeholder.com/200?text=Yamaha+R15",
     },
   ];
 
+  const freshRecommendations = [
+    {
+      id: 1,
+      name: "Sony Bravia TV",
+      price: "₹70,000",
+      image: "https://via.placeholder.com/200?text=Sony+Bravia+TV",
+    },
+    {
+      id: 2,
+      name: "Wooden Sofa Set",
+      price: "₹25,000",
+      image: "https://via.placeholder.com/200?text=Wooden+Sofa+Set",
+    },
+    {
+      id: 3,
+      name: "MacBook Air M1",
+      price: "₹1,00,000",
+      image: "https://via.placeholder.com/200?text=MacBook+Air",
+    },
+    {
+      id: 4,
+      name: "Dell XPS 15",
+      price: "₹1,50,000",
+      image: "https://via.placeholder.com/200?text=Dell+XPS",
+    },
+    {
+      id: 5,
+      name: "iPad Pro",
+      price: "₹85,000",
+      image: "https://via.placeholder.com/200?text=iPad+Pro",
+    },
+    {
+      id: 6,
+      name: "Bose Headphones",
+      price: "₹25,000",
+      image: "https://via.placeholder.com/200?text=Bose+Headphones",
+    },
+    {
+      id: 1,
+      name: "Sony Bravia TV",
+      price: "₹70,000",
+      image: "https://via.placeholder.com/200?text=Sony+Bravia+TV",
+    },
+    {
+      id: 2,
+      name: "Wooden Sofa Set",
+      price: "₹25,000",
+      image: "https://via.placeholder.com/200?text=Wooden+Sofa+Set",
+    },
+    {
+      id: 3,
+      name: "MacBook Air M1",
+      price: "₹1,00,000",
+      image: "https://via.placeholder.com/200?text=MacBook+Air",
+    },
+    {
+      id: 4,
+      name: "Dell XPS 15",
+      price: "₹1,50,000",
+      image: "https://via.placeholder.com/200?text=Dell+XPS",
+    },
+    {
+      id: 5,
+      name: "iPad Pro",
+      price: "₹85,000",
+      image: "https://via.placeholder.com/200?text=iPad+Pro",
+    },
+    {
+      id: 6,
+      name: "Bose Headphones",
+      price: "₹25,000",
+      image: "src/assets/car.png",
+    },
+  ];
+
+  // Function to render products dynamically
+  const renderProducts = (products) =>
+    products.map((product) => (
+      <div className="product-card" key={product.id}>
+        <img src={product.image} alt={product.name} className="product-image" />
+        <h4 className="product-name">{product.name}</h4>
+        <p className="product-price">{product.price}</p>
+      </div>
+    ));
+
   return (
-    <div className="product-list-container">
-      <h1>Products</h1>
-      <div className="product-grid">
-        {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <img src={product.image} alt={product.title} className="product-image" />
-            <h3 className="product-title">{product.title}</h3>
-            <p className="product-price">{product.price}</p>
-            <p className="product-location">{product.location}</p>
-            <p className="product-posted">{product.posted}</p>
-            <button className="contact-button">Contact Seller</button>
-          </div>
-        ))}
+    <div className="product-listing-container">
+      {/* Based on your last search */}
+      <div className="section">
+        <h2>Based on your last search</h2>
+        <div className="product-grid">{renderProducts(lastSearchProducts)}</div>
+      </div>
+
+      {/* Fresh Recommendations */}
+      <div className="section">
+        <h2>Fresh Recommendations</h2>
+        <div className="product-grid">{renderProducts(freshRecommendations)}</div>
       </div>
     </div>
   );
 };
 
-export default ProductList;
+export default ProductListing;

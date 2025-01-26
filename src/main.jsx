@@ -7,13 +7,13 @@ import { createRoot } from 'react-dom/client'
 // import ProductDetails from './pages/ProductDetails'
 // import HomePage from './pages/HomePage'
 // import PostAdForm from './pages/postads'
-import ProfilePage from './pages/Profile'
+// import ProfilePage from './pages/Profile'
 // import EditProfile from './pages/EditProfile'
-
+import HomePage from './pages/HomePage'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ProfilePage />
+    <HomePage />
   </StrictMode>,
 )
