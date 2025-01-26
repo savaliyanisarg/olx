@@ -1,6 +1,6 @@
 // LoginSignup.js
 import React, { useState } from "react";
-import "./Login.css"; // Separate CSS file for styling
+import "../styles/Login.css"; // Separate CSS file for styling
 
 const LoginSignup = () => {
   const [isLogin, setIsLogin] = useState(true);

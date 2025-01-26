@@ -1,10 +1,20 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
 /* Header Container */
 .header-container {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Top Header Section */
 .header-top {
   display: flex;
   justify-content: space-between;
@@ -44,16 +54,8 @@
 
 .language-login {
   display: flex;
-  gap: 25px; /* Increased gap for space between login and profile */
+  gap: 25px;
   align-items: center;
-}
-
-.language-login span {
-  cursor: pointer;
-}
-
-.language-login .login {
-  font-weight: bold;
 }
 
 .actions {
@@ -63,69 +65,16 @@
 }
 
 .sell-button {
+  padding: 8px 16px;
   background-color: #ff6200;
   color: white;
   border: none;
-  padding: 8px 16px;
-  cursor: pointer;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .sell-button:hover {
   background-color: #e55a00;
-}
-
-/* Header.css */
-/* Header.css */
-.header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-
-.actions {
-  display: flex;
-  align-items: center;
-}
-
-.sell-button {
-  padding: 8px 16px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.sell-button:hover {
-  background-color: #0056b3;
-}
-
-.wishlist-icon {
-  margin-left: 15px;
-  cursor: pointer;
-}
-
-.profile-icon {
-  margin-left: 15px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.profile-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.profile-icon {
-  margin-left: 15px;
-  display: flex;
-  align-items: center;
 }
 
 /* Navigation Bar */
@@ -186,11 +135,6 @@
   margin-top: 10px;
 }
 
-.ad-content .ad-footer {
-  font-size: 14px;
-  color: #888;
-}
-
 .ad-images {
   flex: 1;
   display: flex;
@@ -204,6 +148,8 @@
   object-fit: cover;
   border-radius: 10px;
 }
+
+/* Footer Section */
 .footer {
   background-color: #f8f9fa;
   padding: 20px 0;
@@ -255,58 +201,93 @@
   color: #888;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+/* Responsive Styles */
+
+/* Tablets and smaller screens */
+@media (max-width: 768px) {
+  .header-top {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .search-bar {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .language-login {
+    gap: 15px;
+  }
+
+  .nav-bar ul {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .banner-ad {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ad-content {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .ad-images {
+    justify-content: center;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
 }
 
-.header {
-  background-color: #fff;
-  padding: 10px 20px;
-}
+/* Mobile Screens */
+@media (max-width: 480px) {
+  .header-top {
+    flex-direction: column;
+    gap: 5px;
+  }
 
-.header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  .logo {
+    font-size: 20px;
+  }
 
-.nav-bar ul {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  gap: 15px;
-}
+  .search-bar button {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
 
-.nav-bar li {
-  cursor: pointer;
-}
+  .sell-button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
 
-.banner-ad {
-  text-align: center;
-  margin: 20px 0;
-}
+  .banner-ad {
+    flex-direction: column;
+    padding: 15px;
+  }
 
-.footer {
-  background-color: #f8f8f8;
-  padding: 20px 10px;
-  margin-top: auto;
-}
+  .ad-images img {
+    width: 80px;
+    height: 80px;
+  }
 
-.footer-content {
-  display: flex;
-  justify-content: space-around;
-  text-align: left;
-}
+  .footer-section h4 {
+    font-size: 16px;
+  }
 
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-}
+  .footer-section ul li {
+    font-size: 14px;
+  }
 
-.footer-bottom {
-  text-align: center;
-  margin-top: 20px;
+  .footer-bottom {
+    font-size: 12px;
+  }
 }

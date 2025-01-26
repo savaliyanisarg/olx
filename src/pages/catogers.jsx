@@ -1,5 +1,5 @@
 import React from 'react';
-import './Styaling.css';
+import "../styles/Styaling.css";
 
 const AdCategories = () => {
   const categories = [

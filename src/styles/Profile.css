@@ -1,80 +1,73 @@
-/* Profile Container */
+/* General Styling */
 .profile-container {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.profile-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 2px solid #ddd;
+}
+
+.profile-details h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.profile-details p {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #666;
+}
+
+/* Edit Profile Button */
+.edit-profile-button {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-profile-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 15px;
   }
-  
-  /* Profile Header Section */
-  .profile-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .profile-picture {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 20px;
-  }
-  
-  .profile-info h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .profile-info p {
-    margin: 5px 0;
-    color: #555;
-    font-size: 14px;
-  }
-  
-  /* Listings Section */
-  .profile-listings h3 {
-    margin-bottom: 10px;
+
+  .profile-details h2 {
     font-size: 20px;
-    color: #333;
   }
-  
-  .listings-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+
+  .edit-profile-button {
+    font-size: 12px;
+    padding: 8px 16px;
   }
-  
-  .listing-card {
-    width: 200px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    text-align: center;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .listing-image {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  .listing-title {
-    margin: 10px 0 5px;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .listing-price {
-    font-size: 14px;
-    font-weight: bold;
-    color: #007bff;
-  }
-  
+}

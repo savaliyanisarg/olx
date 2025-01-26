@@ -1,16 +1,5 @@
 import React, { useState } from "react";
-
-const categories = [
-  "OLX Autos (Cars)",
-  "Properties",
-  "Mobiles",
-  "Jobs",
-  "Bikes",
-  "Electronics and Appliances",
-  "Fashion",
-  "Books Sports and Hobbies",
-  "Services",
-];
+import "../styles/Postads.css"; // Link to CSS file
 
 const PostAdForm = () => {
   const [formData, setFormData] = useState({
@@ -18,141 +7,154 @@ const PostAdForm = () => {
     title: "",
     description: "",
     price: "",
-    contact: "",
-    image: null,
+    location: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      image: file,
-    }));
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.category) newErrors.category = "Category is required";
+    if (!formData.title || formData.title.length < 5)
+      newErrors.title = "Title must be at least 5 characters";
+    if (!formData.description || formData.description.length < 10)
+      newErrors.description = "Description must be at least 10 characters";
+    if (!formData.price || formData.price <= 0)
+      newErrors.price = "Price must be a positive number";
+    if (!formData.location)
+      newErrors.location = "Location is required";
+
+    return newErrors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formDataToSubmit = new FormData();
-    formDataToSubmit.append("category", formData.category);
-    formDataToSubmit.append("title", formData.title);
-    formDataToSubmit.append("description", formData.description);
-    formDataToSubmit.append("price", formData.price);
-    formDataToSubmit.append("contact", formData.contact);
-    if (formData.image) {
-      formDataToSubmit.append("image", formData.image);
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length === 0) {
+      console.log("Form Submitted:", formData);
+      alert("Your ad has been submitted successfully!");
+      setFormData({
+        category: "",
+        title: "",
+        description: "",
+        price: "",
+        location: "",
+      });
+    } else {
+      setErrors(validationErrors);
     }
-
-    alert(`Ad posted successfully:\n${JSON.stringify(formData, null, 2)}`);
-    setFormData({
-      category: "",
-      title: "",
-      description: "",
-      price: "",
-      contact: "",
-      image: null,
-    });
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "auto", fontFamily: "Arial, sans-serif" }}>
-      <h2 style={{ textAlign: "center" }}>Post Your Ad</h2>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-        <label>
-          Category:
+    <div className="post-ad-container">
+      <h1 className="form-title">Post Your Ad</h1>
+      <form onSubmit={handleSubmit} className="post-ad-form">
+        {/* Select Category */}
+        <div className="form-group">
+          <label htmlFor="category">Select Category</label>
           <select
+            id="category"
             name="category"
             value={formData.category}
             onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "10px", borderRadius: "5px", border: "1px solid #ddd" }}
           >
-            <option value="">Select a category</option>
-            {categories.map((category, index) => (
-              <option key={index} value={category}>
-                {category}
-              </option>
-            ))}
+            <option value="">Choose a category</option>
+            <option value="cars">Cars</option>
+            <option value="electronics">Electronics</option>
+            <option value="furniture">Furniture</option>
           </select>
-        </label>
+          {errors.category && <p className="error-message">{errors.category}</p>}
+        </div>
 
-        <label>
-          Ad Title:
+        {/* Include Some Details */}
+        <div className="section-title">Include Some Details</div>
+        <div className="form-group">
+          <label htmlFor="title">Ad Title</label>
           <input
             type="text"
+            id="title"
             name="title"
             value={formData.title}
             onChange={handleChange}
-            required
-            placeholder="Enter the title of your ad"
-            style={{ width: "100%", padding: "10px", borderRadius: "5px", border: "1px solid #ddd" }}
+            placeholder="Enter a title for your ad"
           />
-        </label>
-
-        <label>
-          Description:
+          {errors.title && <p className="error-message">{errors.title}</p>}
+        </div>
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
           <textarea
+            id="description"
             name="description"
             value={formData.description}
             onChange={handleChange}
-            required
-            placeholder="Enter a detailed description"
-            style={{ width: "100%", padding: "10px", borderRadius: "5px", border: "1px solid #ddd", minHeight: "100px" }}
-          />
-        </label>
+            placeholder="Provide details about your ad"
+          ></textarea>
+          {errors.description && (
+            <p className="error-message">{errors.description}</p>
+          )}
+        </div>
 
-        <label>
-          Price:
+        {/* Set a Price */}
+        <div className="form-group">
+          <label htmlFor="price">Price</label>
           <input
             type="number"
+            id="price"
             name="price"
             value={formData.price}
             onChange={handleChange}
-            required
             placeholder="Enter the price"
-            style={{ width: "100%", padding: "10px", borderRadius: "5px", border: "1px solid #ddd" }}
           />
-        </label>
+          {errors.price && <p className="error-message">{errors.price}</p>}
+        </div>
 
-        <label>
-          Contact Information:
+        {/* Upload Photos */}
+        <div className="section-title">Upload Photos</div>
+        <div className="upload-grid">
+          <div className="upload-box">Click to Upload</div>
+          <div className="upload-box">Click to Upload</div>
+          <div className="upload-box">Click to Upload</div>
+        </div>
+
+        {/* Confirm Location */}
+        <div className="form-group">
+          <label htmlFor="location">Confirm Location</label>
           <input
             type="text"
-            name="contact"
-            value={formData.contact}
+            id="location"
+            name="location"
+            value={formData.location}
             onChange={handleChange}
-            required
-            placeholder="Enter your contact information"
-            style={{ width: "100%", padding: "10px", borderRadius: "5px", border: "1px solid #ddd" }}
+            placeholder="Enter your location"
           />
-        </label>
+          {errors.location && <p className="error-message">{errors.location}</p>}
+        </div>
 
-        <label>
-          Upload Image:
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              style={{ flex: "1", padding: "10px", borderRadius: "5px", border: "1px solid #ddd" }}
-            />
-            {formData.image && <span>{formData.image.name}</span>}
-          </div>
-        </label>
-
-        <button
-          type="submit"
-          style={{ padding: "10px 20px", backgroundColor: "#007BFF", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}
-        >
-          Post Ad
-        </button>
+        {/* Buttons */}
+        <div className="button-group">
+          <button className="submit-button" type="submit">
+            Submit
+          </button>
+          <button
+            className="reset-button"
+            type="button"
+            onClick={() =>
+              setFormData({
+                category: "",
+                title: "",
+                description: "",
+                price: "",
+                location: "",
+              })
+            }
+          >
+            Reset
+          </button>
+        </div>
       </form>
     </div>
   );
