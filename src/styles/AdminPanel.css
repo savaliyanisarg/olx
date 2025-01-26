@@ -1,0 +1,148 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Admin Panel Layout */
+  .admin-panel {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+  }
+  
+  /* Sidebar Styles */
+  .admin-sidebar {
+    width: 20%;
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .admin-sidebar h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #ecf0f1;
+    border-bottom: 2px solid #34495e;
+    padding-bottom: 10px;
+  }
+  
+  .admin-sidebar ul {
+    list-style: none;
+  }
+  
+  .admin-sidebar ul li {
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #34495e;
+  }
+  
+  .admin-sidebar ul li:hover {
+    background-color: #1abc9c;
+    color: #fff;
+  }
+  
+  .admin-sidebar ul li.active {
+    background-color: #16a085;
+    color: #fff;
+  }
+  
+  /* Content Area Styles */
+  .admin-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  /* Table Styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  table th,
+  table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #34495e;
+    color: #fff;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Button Styles */
+  button {
+    background-color: #1abc9c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #16a085;
+  }
+  
+  /* Mobile Responsiveness */
+  @media screen and (max-width: 768px) {
+    .admin-panel {
+      flex-direction: column;
+    }
+  
+    .admin-sidebar {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .admin-sidebar ul li {
+      margin: 5px 0;
+    }
+  
+    .admin-content {
+      padding: 15px;
+    }
+  
+    table th,
+    table td {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .admin-sidebar h2 {
+      font-size: 1.2rem;
+    }
+  
+    button {
+      padding: 8px 15px;
+    }
+  
+    table th,
+    table td {
+      font-size: 0.8rem;
+    }
+  }
+  

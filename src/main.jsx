@@ -9,11 +9,12 @@ import { createRoot } from 'react-dom/client'
 // import PostAdForm from './pages/postads'
 // import ProfilePage from './pages/Profile'
 // import EditProfile from './pages/EditProfile'
-import HomePage from './pages/HomePage'
+// import HomePage from './pages/HomePage'
+import AdminPanel from './Admin/AdminPanel'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HomePage />
+    <AdminPanel />
   </StrictMode>,
 )
