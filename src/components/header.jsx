@@ -27,10 +27,15 @@ const Header = () => {
 
           {/* User Actions */}
           <div className="actions">
-            <button className="sell-button">Sell</button>
+            {/* Using <a> for navigation to sell page */}
+            <a href="./catogers.jsx">
+              <button className="sell-button">Sell</button>
+            </a>
+
             <div className="wishlist-icon">
               <FaHeart size={24} color="#FF4081" />
             </div>
+
             <div
               className="profile-icon"
               onClick={handleProfileClick}
@@ -42,7 +47,7 @@ const Header = () => {
         </div>
 
         {/* Navigation Bar */}
-        <nav className="nav-bar">
+        {/* <nav className="nav-bar">
           <ul>
             <li>ALL CATEGORIES</li>
             <li>Cars</li>
@@ -53,11 +58,10 @@ const Header = () => {
             <li>Commercial & Other Vehicles</li>
             <li>For Rent: Houses & Apartments</li>
           </ul>
-        </nav>
+        </nav> */}
       </header>
 
       {/* Footer Section (Imported Footer) */}
-      
     </div>
   );
 };
