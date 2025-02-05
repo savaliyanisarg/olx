@@ -28,8 +28,9 @@ const Header = () => {
           {/* User Actions */}
           <div className="actions">
             {/* Using <a> for navigation to sell page */}
-            <a href="./catogers.jsx">
+            <a href="./AdCategories">
               <button className="sell-button">Sell</button>
+              
             </a>
 
             <div className="wishlist-icon">
