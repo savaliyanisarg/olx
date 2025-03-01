@@ -1,8 +1,11 @@
 import React from "react";
 import Header from "../components/header";
+import ProductList from "../components/product";
 import Footer from "../components/footer";
-import ProductList from "../components/product"; // Adjust if necessary
+ // Adjust if necessary
+
 import "../styles/HomePage.css";
+
 
 const HomePage = () => {
   return (

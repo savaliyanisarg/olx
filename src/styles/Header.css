@@ -7,74 +7,113 @@ body {
 
 /* Header Container */
 .header-container {
-  font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Header Section */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the header content */
+  background-color: #002f34; /* OLX header color */
+  padding: 15px 20px;
+  width: 100%;
+}
+
+/* Header Top Section */
 .header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #002f34;
-  color: white;
+  width: 90%; /* Reduce width to give spacing */
+  max-width: 1200px; /* Limit max width */
+  background: #003c42;
+  padding: 10px 15px;
+  border-radius: 8px;
+  flex-wrap: wrap;
 }
 
+/* Logo */
 .logo {
   font-size: 24px;
   font-weight: bold;
+  color: white;
+  margin-right: 20px;
 }
 
+/* Search Bar */
 .search-bar {
+  flex-grow: 1;
   display: flex;
-  flex: 1;
+  align-items: center;
+  gap: 10px;
+  max-width: 500px;
   margin: 0 20px;
 }
 
 .search-bar input {
   flex: 1;
-  padding: 8px;
+  padding: 10px;
   border: none;
   border-radius: 5px 0 0 5px;
   outline: none;
 }
 
 .search-bar button {
-  padding: 8px 15px;
+  padding: 10px 15px;
   border: none;
   border-radius: 0 5px 5px 0;
   background-color: #006064;
   color: white;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
-.language-login {
-  display: flex;
-  gap: 25px;
-  align-items: center;
+.search-bar button:hover {
+  background-color: #004d4d;
 }
 
+/* User Actions */
 .actions {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
+/* Sell Button */
 .sell-button {
-  padding: 8px 16px;
+  padding: 10px 16px;
   background-color: #ff6200;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .sell-button:hover {
   background-color: #e55a00;
+}
+
+/* Login Button */
+.login-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
 }
 
 /* Navigation Bar */
@@ -87,6 +126,7 @@ body {
 
 .nav-bar ul {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   list-style: none;
   margin: 0;
@@ -106,6 +146,7 @@ body {
   padding: 20px;
   background-color: #e9f6f9;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 .ad-content {
@@ -133,13 +174,19 @@ body {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.ad-content button:hover {
+  background-color: #004d4d;
 }
 
 .ad-images {
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .ad-images img {
@@ -160,6 +207,7 @@ body {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .footer-section {
@@ -192,6 +240,7 @@ body {
 .social-icons {
   display: flex;
   gap: 15px;
+  justify-content: center;
 }
 
 .footer-bottom {
@@ -202,26 +251,20 @@ body {
 }
 
 /* Responsive Styles */
-
-/* Tablets and smaller screens */
 @media (max-width: 768px) {
   .header-top {
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 10px;
+    text-align: center;
   }
 
   .search-bar {
-    margin: 10px 0;
     width: 100%;
-  }
-
-  .language-login {
-    gap: 15px;
+    margin: 10px 0;
   }
 
   .nav-bar ul {
-    flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
   }
 
   .banner-ad {
@@ -234,27 +277,13 @@ body {
     margin-bottom: 20px;
   }
 
-  .ad-images {
-    justify-content: center;
-  }
-
   .footer-content {
     flex-direction: column;
     align-items: center;
   }
-
-  .footer-section {
-    text-align: center;
-  }
 }
 
-/* Mobile Screens */
 @media (max-width: 480px) {
-  .header-top {
-    flex-direction: column;
-    gap: 5px;
-  }
-
   .logo {
     font-size: 20px;
   }
@@ -267,11 +296,6 @@ body {
   .sell-button {
     padding: 6px 12px;
     font-size: 14px;
-  }
-
-  .banner-ad {
-    flex-direction: column;
-    padding: 15px;
   }
 
   .ad-images img {

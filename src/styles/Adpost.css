@@ -1,0 +1,177 @@
+/* General Styles */
+.ad-post-form-container {
+    max-width: 600px;
+    margin: 80px auto 20px; /* Adds spacing from the top */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Form Group */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #444;
+  }
+  
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+  
+  /* File Input */
+  input[type="file"] {
+    padding: 5px;
+  }
+  
+  /* Error Messages */
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Submit Button */
+  .submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff6200;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #e55a00;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .ad-post-form-container {
+      width: 90%;
+      margin: 60px auto 20px;
+      padding: 15px;
+    }
+  
+    input,
+    textarea,
+    select {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .submit-button {
+      font-size: 16px;
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .ad-post-form-container {
+      width: 95%;
+      margin: 50px auto 15px;
+      padding: 12px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    label {
+      font-size: 14px;
+    }
+  
+    input,
+    textarea,
+    select {
+      font-size: 14px;
+      padding: 7px;
+    }
+  
+    .submit-button {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
+  .back-arrow {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+  position: absolute;  /* Position it absolutely */
+  top: 20px;  /* Move it to the top */
+  left: 20px; /* Align to the left */
+  font-weight: bold;
+}
+
+.back-arrow svg {
+  margin-right: 5px;
+}
+
+.post-add-btn {
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.post-add-btn:hover {
+  background-color: #0056b3;
+}
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .back-button .back-icon {
+    margin-right: 5px; /* Space between icon and text */
+    font-size: 22px;
+  }
+  
+  .back-button:hover {
+    color: #000;
+  }
+  

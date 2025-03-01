@@ -1,63 +1,109 @@
-.ad-post-form-container {
-  max-width: 600px;
+.container {
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
   text-align: center;
-  margin-bottom: 20px;
 }
 
-.ad-post-form .form-group {
+h1 {
+  font-size: 28px;
+  color: #333;
   margin-bottom: 15px;
 }
 
-.ad-post-form .form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
+.category-list {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.ad-post-form .form-group input,
-.ad-post-form .form-group textarea,
-.ad-post-form .form-group select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
+h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #007bff;
 }
 
-.ad-post-form .form-group textarea {
-  resize: vertical;
-  height: 100px;
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.ad-post-form .submit-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
+.category-item:hover {
+  background: #007bff;
   color: white;
+}
+
+.category-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.category-title {
+  flex-grow: 1;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.category-arrow {
+  font-size: 20px;
+  color: gray;
+}
+
+@media (max-width: 600px) {
+  .category-item {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .category-title {
+    font-size: 16px;
+  }
+
+  .category-icon {
+    font-size: 20px;
+  }
+}
+.back-arrow {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+  position: absolute;  /* Position it absolutely */
+  top: 20px;  /* Move it to the top */
+  left: 20px; /* Align to the left */
+  font-weight: bold;
+}
+
+.back-arrow svg {
+  margin-right: 5px;
+}
+
+.post-add-btn {
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
-.ad-post-form .submit-button:hover {
+.post-add-btn:hover {
   background-color: #0056b3;
 }
-
-.error {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
-

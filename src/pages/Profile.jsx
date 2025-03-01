@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import "../styles/Profile.css"; // Include the CSS file for styling
 
 const ProfilePage = () => {
+  const navigate = useNavigate(); // Initialize navigate function
+
+  // Navigate to Edit Profile page
   const handleEditProfile = () => {
-    alert("Redirecting to Edit Profile...");
-    // Logic to navigate to edit profile page (e.g., use React Router)
+    navigate("/EditProfile"); // Redirects to Edit Profile Page
   };
 
   return (
