@@ -1,74 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginSignup = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-  const toggleForm = () => {
-    setIsLogin(!isLogin);
-    setIsAdmin(false);
-    setFormData({ name: "", email: "", password: "" });
-    setErrors({});
-  };
-
-  const switchToAdmin = () => {
-    setIsLogin(true);
-    setIsAdmin(true);
-    setFormData({ name: "", email: "", password: "" });
-    setErrors({});
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const validateForm = () => {
-    let newErrors = {};
-
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Enter a valid email address";
-    }
-
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
-    }
-
-    if (!isLogin && !formData.name) {
-      newErrors.name = "Name is required";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      if (isAdmin) {
-        alert("Admin login successful!");
-      } else if (isLogin) {
-        alert("User login successful!");
-      } else {
-        alert("Signup successful!");
-      }
-      setFormData({ name: "", email: "", password: "" });
-      setErrors({});
-    }
-  };
-
-  // Styles
   const styles = {
     container: {
       display: "flex",
@@ -143,6 +82,62 @@ const LoginSignup = () => {
     },
   };
 
+  const toggleForm = () => {
+    setIsLogin(!isLogin);
+    setIsAdmin(false);
+    setFormData({ name: "", email: "", password: "" });
+    setErrors({});
+  };
+
+  const switchToAdmin = () => {
+    navigate("../Admin/AdminPanel");
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const validateForm = () => {
+    let newErrors = {};
+
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Enter a valid email address";
+    }
+
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+
+    if (!isLogin && !formData.name) {
+      newErrors.name = "Name is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      if (isAdmin) {
+        alert("Admin login successful!");
+        navigate("/AdminPanel");
+      } else if (isLogin) {
+        alert("User login successful!");
+        navigate("/HomePage");
+      } else {
+        alert("Signup successful!");
+      }
+      setFormData({ name: "", email: "", password: "" });
+      setErrors({});
+    }
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.formContainer}>
@@ -152,10 +147,9 @@ const LoginSignup = () => {
         <form onSubmit={handleSubmit}>
           {!isLogin && (
             <div style={styles.formGroup}>
-              <label htmlFor="name" style={styles.label}>Name:</label>
+              <label style={styles.label}>Name:</label>
               <input
                 type="text"
-                id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
@@ -166,10 +160,9 @@ const LoginSignup = () => {
             </div>
           )}
           <div style={styles.formGroup}>
-            <label htmlFor="email" style={styles.label}>Email:</label>
+            <label style={styles.label}>Email:</label>
             <input
               type="email"
-              id="email"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
@@ -179,10 +172,9 @@ const LoginSignup = () => {
             {errors.email && <p style={styles.errorText}>{errors.email}</p>}
           </div>
           <div style={styles.formGroup}>
-            <label htmlFor="password" style={styles.label}>Password:</label>
+            <label style={styles.label}>Password:</label>
             <input
               type="password"
-              id="password"
               name="password"
               value={formData.password}
               onChange={handleInputChange}
@@ -195,8 +187,6 @@ const LoginSignup = () => {
             {isAdmin ? "Admin Login" : isLogin ? "Login" : "Sign Up"}
           </button>
         </form>
-
-        {/* Toggle User/Signup */}
         {!isAdmin && (
           <p style={styles.toggleText}>
             {isLogin ? "Don't have an account?" : "Already have an account?"}
@@ -205,13 +195,9 @@ const LoginSignup = () => {
             </button>
           </p>
         )}
-
-        {/* Admin Login Button */}
-        {!isAdmin && (
-          <button onClick={switchToAdmin} style={styles.adminBtn}>
-            Admin Login
-          </button>
-        )}
+        <button onClick={switchToAdmin} style={styles.adminBtn}>
+          Admin Login
+        </button>
       </div>
     </div>
   );

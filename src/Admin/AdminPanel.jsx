@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UserManagement from "./UserManagement";
 import ProductManagement from "./ProductManagement";
 import CategoryManagement from "./CategoryManagement";
@@ -6,6 +7,7 @@ import "../styles/AdminPanel.css"; // Custom styles for Admin Panel
 
 const AdminPanel = () => {
   const [selectedSection, setSelectedSection] = useState("users");
+  const navigate = useNavigate();
 
   const renderSection = () => {
     switch (selectedSection) {
@@ -20,6 +22,11 @@ const AdminPanel = () => {
     }
   };
 
+  const handleLogout = () => {
+    // Perform logout logic here (e.g., clearing authentication tokens)
+    navigate("/"); // Redirect to login page
+  };
+
   return (
     <div className="admin-panel">
       <aside className="admin-sidebar">
@@ -31,6 +38,7 @@ const AdminPanel = () => {
             Category Management
           </li>
         </ul>
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </aside>
       <main className="admin-content">{renderSection()}</main>
     </div>

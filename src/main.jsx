@@ -12,6 +12,7 @@ import AdminPanel from "./Admin/AdminPanel";
 import Wishlist from "./pages/Wishlist"; // Added missing page
 import ProfilePage from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
+// import AdminPanel from "./Admin/AdminPanel";
 //import NotFound from "./pages/NotFound"; // 404 Page
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/Wishlist" element={<Wishlist />} />
           <Route path="/profile" element={<ProfilePage />} /> {/* Added missing page */}
           <Route path="/editprofile" element={<EditProfile />} /> {/* Added missing page */}
+          <Route path="/Admin/AdminPanel" element={<AdminPanel />} /> {/* Added missing page*/}
           {/* <Route path="*" element={<NotFound />} /> Handle unknown routes */}
         </Routes>
       </Router>
