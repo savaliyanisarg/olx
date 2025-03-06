@@ -1,25 +1,16 @@
 import React from "react";
-import { FaHeart, FaUserCircle } from "react-icons/fa"; // Importing icons
+import { FaHeart, FaUserCircle, FaComments } from "react-icons/fa"; // Importing icons
 import { useNavigate } from "react-router-dom"; // For navigation
 import "../styles/Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
 
-  // Handle login click (Navigate to Login Page)
-  const handleLogin = () => {
-    navigate("/login"); // Redirects to Login Page
-  };
-
-  // Handle profile click (Navigate to Profile Page)
-  const handleProfileClick = () => {
-    navigate("/profile"); // Redirects to Profile Page
-  };
-
-  // Handle wishlist click (Navigate to Wishlist Page)
-  const handleWishlistClick = () => {
-    navigate("/wishlist"); // Redirects to Wishlist Page
-  };
+  // Handle navigation clicks
+  const handleLogin = () => navigate("/login");
+  const handleProfileClick = () => navigate("/profile");
+  const handleWishlistClick = () => navigate("/wishlist");
+  const handleChatClick = () => navigate("/messages"); // Navigate to Chat Page
 
   return (
     <div className="container">
@@ -42,13 +33,18 @@ const Header = () => {
               <button className="sell-button">Sell</button>
             </a>
 
-            {/* Wishlist Icon (Navigates to Wishlist Page) */}
+            {/* Wishlist Icon */}
             <div className="wishlist-icon" onClick={handleWishlistClick} style={{ cursor: "pointer" }}>
               <FaHeart size={24} color="#FF4081" />
             </div>
 
-            {/* Profile Icon (Always Visible) */}
-            <div className="profile-icon" onClick={handleProfileClick} style={{ cursor: "pointer" }}>
+            {/* Chat Icon */}
+            <div className="chat-icon" onClick={handleChatClick} style={{ cursor: "pointer", marginLeft: "10px" }}>
+              <FaComments size={24} color="#007bff" />
+            </div>
+
+            {/* Profile Icon */}
+            <div className="profile-icon" onClick={handleProfileClick} style={{ cursor: "pointer", marginLeft: "10px" }}>
               <FaUserCircle size={32} color="#000" />
             </div>
 

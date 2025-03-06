@@ -1,0 +1,64 @@
+.chat-container {
+    width: 50%;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    background: #fff;
+  }
+  
+  .chat-box {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+  }
+  
+  .message {
+    padding: 8px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    max-width: 70%;
+    word-wrap: break-word;
+  }
+  
+  .buyer {
+    background: #007bff;
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+  
+  .seller {
+    background: #ddd;
+    color: black;
+    align-self: flex-start;
+  }
+  
+  .chat-input {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .chat-input button {
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .chat-input button:hover {
+    background: #0056b3;
+  }
+  

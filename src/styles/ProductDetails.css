@@ -1,3 +1,4 @@
+/* General Styling */
 .product-details-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -5,9 +6,11 @@
   font-family: Arial, sans-serif;
 }
 
+/* Product Main Section */
 .product-main {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .product-image img {
@@ -22,31 +25,31 @@
 
 .product-name {
   font-size: 24px;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
 .product-price {
   font-size: 22px;
   color: green;
+  font-weight: bold;
   margin-bottom: 15px;
 }
 
-.product-description {
+.product-description,
+.product-location {
   font-size: 16px;
   margin-bottom: 10px;
 }
 
-.product-location {
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
+/* Seller Details */
 .seller-details {
   margin-top: 30px;
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #f9f9f9;
+  text-align: center;
 }
 
 .seller-details h3 {
@@ -60,39 +63,145 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .contact-seller-button:hover {
   background-color: #0056b3;
 }
 
+/* Related Ads Section */
+.related-ads-container {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.related-ads-container h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
 .related-ads {
-  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
 
-.related-ads-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
-
+/* Related Ads Card */
 .related-ad-card {
+  flex: 0 0 auto;
+  width: 200px;
+  background-color: white;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 10px;
   text-align: center;
-  background-color: white;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
-.related-ad-card img {
+.related-ad-card:hover {
+  transform: scale(1.05);
+}
+
+.related-ad-image {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
-.related-ad-card h4 {
-  margin: 10px 0 5px;
+.related-ad-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
 }
 
-.related-ad-card p {
+.related-ad-price {
   color: green;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-main {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .product-image img {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .related-ads {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .related-ads {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .related-ad-card {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+.seller-profile {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.seller-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.seller-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #007bff;
+}
+
+.seller-details h4 {
+  margin: 5px 0;
+}
+
+.contact-seller-button {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-seller-button:hover {
+  background-color: #0056b3;
+}
+.product-map {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.map-image {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+iframe {
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
