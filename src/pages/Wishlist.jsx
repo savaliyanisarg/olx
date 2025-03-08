@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
+  const navigate = useNavigate(); // Initialize navigation
 
   // Load wishlist from localStorage on mount
   useEffect(() => {
@@ -34,12 +36,23 @@ const Wishlist = () => {
                 border: "1px solid #ddd",
                 borderRadius: "5px",
                 marginBottom: "10px",
+                cursor: "pointer",
               }}
+              onClick={() => navigate(`/product/${item.id}`)} // Navigate to product detail page
             >
-              <span>{item.name} - {item.price}</span>
+              <span>{item.name} - ₹{item.price.toLocaleString()}</span>
               <button
-                onClick={() => removeFromWishlist(item.id)}
-                style={{ background: "red", color: "white", border: "none", padding: "5px 10px", cursor: "pointer" }}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent navigation when clicking remove button
+                  removeFromWishlist(item.id);
+                }}
+                style={{
+                  background: "red",
+                  color: "white",
+                  border: "none",
+                  padding: "5px 10px",
+                  cursor: "pointer",
+                }}
               >
                 Remove
               </button>

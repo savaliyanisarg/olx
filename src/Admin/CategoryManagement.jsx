@@ -70,7 +70,7 @@ const CategoryManagement = () => {
       transition: "color 0.3s ease",
     },
     deleteBtn: {
-      backgroundColor: "#dc3545",
+      backgroundColor: "red", // Set background color to red
       color: "white",
       padding: "6px 10px",
       border: "none",
@@ -79,7 +79,7 @@ const CategoryManagement = () => {
       transition: "background 0.3s ease",
     },
     deleteBtnHover: {
-      backgroundColor: "#c82333",
+      backgroundColor: "darkred", // Darker red on hover
     },
   };
 

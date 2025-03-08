@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import UserManagement from "./UserManagement";
 import ProductManagement from "./ProductManagement";
 import CategoryManagement from "./CategoryManagement";
+import SellerProfileManagement from "./SellerProfileManagement";  // Import Seller Profile Management
 import "../styles/AdminPanel.css"; // Custom styles for Admin Panel
 
 const AdminPanel = () => {
@@ -17,6 +18,8 @@ const AdminPanel = () => {
         return <ProductManagement />;
       case "categories":
         return <CategoryManagement />;
+      case "sellers":
+        return <SellerProfileManagement />;  // New case for Seller Profiles
       default:
         return <UserManagement />;
     }
@@ -34,9 +37,8 @@ const AdminPanel = () => {
         <ul>
           <li onClick={() => setSelectedSection("users")}>User Management</li>
           <li onClick={() => setSelectedSection("products")}>Product Management</li>
-          <li onClick={() => setSelectedSection("categories")}>
-            Category Management
-          </li>
+          <li onClick={() => setSelectedSection("categories")}>Category Management</li>
+          <li onClick={() => setSelectedSection("sellers")}>Seller Profile Management</li> {/* New Section */}
         </ul>
         <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </aside>

@@ -1,18 +1,17 @@
 import React from "react";
 import Header from "../components/header";
+// import Banner from "../components/Banner"; // Import the Banner
 import ProductList from "../components/product";
 import Footer from "../components/footer";
- // Adjust if necessary
 
 import "../styles/HomePage.css";
-
 
 const HomePage = () => {
   return (
     <div>
       <Header />
+      {/* <Banner /> Add the Banner here */}
       <main>
-        {/* <h1>Welcome to the Home Page</h1> */}
         <ProductList />
       </main>
       <Footer />
