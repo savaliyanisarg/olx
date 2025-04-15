@@ -19,7 +19,7 @@ body {
 .header {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center the header content */
+  align-items: center;
   background-color: #002f34; /* OLX header color */
   padding: 15px 20px;
   width: 100%;
@@ -30,8 +30,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%; /* Reduce width to give spacing */
-  max-width: 1200px; /* Limit max width */
+  width: 90%;
+  max-width: 1200px;
   background: #003c42;
   padding: 10px 15px;
   border-radius: 8px;
@@ -116,89 +116,24 @@ body {
   background-color: #0056b3;
 }
 
-/* Navigation Bar */
-.nav-bar {
-  background-color: #f8f9fa;
-  padding: 10px 20px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-}
-
-.nav-bar ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-bar ul li {
+/* Icons */
+.wishlist-icon,
+.chat-icon,
+.profile-icon {
   cursor: pointer;
-  color: #333;
+  transition: transform 0.2s ease;
 }
 
-/* Banner Ad Section */
-.banner-ad {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: #e9f6f9;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.ad-content {
-  flex: 2;
-  padding-right: 20px;
-}
-
-.ad-content h3 {
-  margin: 0;
-  font-size: 24px;
-  color: #006064;
-}
-
-.ad-content p {
-  margin: 5px 0;
-  font-size: 18px;
-  color: #333;
-}
-
-.ad-content button {
-  padding: 10px 20px;
-  background-color: #006064;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.3s;
-}
-
-.ad-content button:hover {
-  background-color: #004d4d;
-}
-
-.ad-images {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.ad-images img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 10px;
+.wishlist-icon:hover,
+.chat-icon:hover,
+.profile-icon:hover {
+  transform: scale(1.1);
 }
 
 /* Footer Section */
 .footer {
-  background-color: #f8f9fa;
+  background-color: #002f34;
+  color: white;
   padding: 20px 0;
   margin-top: 20px;
 }
@@ -208,10 +143,15 @@ body {
   justify-content: space-around;
   flex-wrap: wrap;
   text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .footer-section {
   margin: 10px;
+  flex: 1;
+  min-width: 200px;
 }
 
 .footer-section h4 {
@@ -230,11 +170,12 @@ body {
 
 .footer-section ul li a {
   text-decoration: none;
-  color: #f8f2f2;
+  color: white;
+  transition: color 0.3s ease;
 }
 
 .footer-section ul li a:hover {
-  text-decoration: underline;
+  color: #ff6200;
 }
 
 .social-icons {
@@ -243,11 +184,21 @@ body {
   justify-content: center;
 }
 
+.social-icons a {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ff6200;
+}
+
 .footer-bottom {
   text-align: center;
   padding-top: 10px;
   font-size: 14px;
-  color: #888;
+  color: #ccc;
+  margin-top: 20px;
 }
 
 /* Responsive Styles */
@@ -263,29 +214,28 @@ body {
     margin: 10px 0;
   }
 
-  .nav-bar ul {
+  .actions {
+    flex-wrap: wrap;
     justify-content: center;
-  }
-
-  .banner-ad {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .ad-content {
-    padding-right: 0;
-    margin-bottom: 20px;
   }
 
   .footer-content {
     flex-direction: column;
     align-items: center;
   }
+
+  .footer-section {
+    margin: 20px 0;
+  }
 }
 
 @media (max-width: 480px) {
   .logo {
     font-size: 20px;
+  }
+
+  .search-bar input {
+    padding: 8px;
   }
 
   .search-bar button {
@@ -298,9 +248,15 @@ body {
     font-size: 14px;
   }
 
-  .ad-images img {
-    width: 80px;
-    height: 80px;
+  .login-button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .wishlist-icon,
+  .chat-icon,
+  .profile-icon {
+    margin-left: 5px;
   }
 
   .footer-section h4 {

@@ -15,6 +15,7 @@ import EditProfile from "./pages/EditProfile";
 import ContactSellerForm from "./pages/message";
 import ChatSellerForm from "./pages/chat"; // Added missing page
 import MessagePage from "./pages/messages";
+import OLXRazorpayPayment from "./pages/payment";
 // import AdminPanel from "./Admin/AdminPanel";
 //import NotFound from "./pages/NotFound"; // 404 Page
 
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/postads" element={<AdPostForm />} />
           <Route path="/login" element={<LoginSignup />} /> 
           <Route path="/product/:id" element={<ProductDetails />} /> {/* Fixed typo */}
+          <Route path="/payment" element={<OLXRazorpayPayment />} />
           <Route path="/Adminlogin" element={<AdminPanel />} /> 
           <Route path="/Wishlist" element={<Wishlist />} />
           <Route path="/profile" element={<ProfilePage />} /> {/* Added missing page */}
@@ -36,6 +38,7 @@ const App = () => {
           <Route path="/message" element={<ContactSellerForm />} /> {/* Added missing page*/}
           <Route path="/chat" element={<ChatSellerForm />} /> 
           <Route path="/messages" element={<MessagePage />} /> {/* Added missing page*/}
+           {/* Added missing page*/}
           {/* <Route path="*" element={<NotFound />} /> Handle unknown routes */}
         </Routes>
       </Router>

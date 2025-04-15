@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaHeart, FaUserCircle, FaComments } from "react-icons/fa"; // Importing icons
 import { useNavigate } from "react-router-dom"; // For navigation
 import "../styles/Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+
+  // Check if the user is logged in on component mount
+  useEffect(() => {
+    const token = localStorage.getItem("token"); // Check for a token in localStorage
+    if (token) {
+      setIsLoggedIn(true); // User is logged in
+    } else {
+      setIsLoggedIn(false); // User is not logged in
+    }
+  }, []);
 
   // Handle navigation clicks
   const handleLogin = () => navigate("/login");
@@ -43,15 +54,20 @@ const Header = () => {
               <FaComments size={24} color="#007bff" />
             </div>
 
-            {/* Profile Icon */}
-            <div className="profile-icon" onClick={handleProfileClick} style={{ cursor: "pointer", marginLeft: "10px" }}>
-              <FaUserCircle size={32} color="#000" />
-            </div>
-
-            {/* Login Button */}
-            <button className="login-button" onClick={handleLogin}>
-              Login
-            </button>
+            {/* Conditionally render Profile Icon or Login Button */}
+            {isLoggedIn ? (
+              <div
+                className="profile-icon"
+                onClick={handleProfileClick}
+                style={{ cursor: "pointer", marginLeft: "10px" }}
+              >
+                <FaUserCircle size={32} color="#000" />
+              </div>
+            ) : (
+              <button className="login-button" onClick={handleLogin}>
+                Login
+              </button>
+            )}
           </div>
         </div>
       </header>

@@ -101,6 +101,22 @@ const AdCategories = () => {
     },
   };
 
+  // Function to check if the user is logged in
+  const isLoggedIn = () => {
+    const token = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
+    return token && email;
+  };
+
+  // Function to handle navigation with login check
+  const handleNavigation = (path) => {
+    if (isLoggedIn()) {
+      navigate(path);
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <div style={styles.container}>
       {/* Back Arrow at the top-left */}
@@ -117,7 +133,7 @@ const AdCategories = () => {
             style={styles.categoryItem}
             onMouseEnter={(e) => (e.currentTarget.style.background = styles.categoryItemHover.background)}
             onMouseLeave={(e) => (e.currentTarget.style.background = "white")}
-            onClick={() => navigate(`/sell/${category.title.toLowerCase().replace(/\s+/g, "-")}`)}
+            onClick={() => handleNavigation(`/sell/${category.title.toLowerCase().replace(/\s+/g, "-")}`)}
           >
             <span style={styles.categoryIcon}>{category.icon}</span>
             <span style={styles.categoryTitle}>{category.title}</span>
@@ -131,7 +147,7 @@ const AdCategories = () => {
         style={styles.postAddBtn}
         onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = styles.postAddBtnHover.backgroundColor)}
         onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#007bff")}
-        onClick={() => navigate("/postads")}
+        onClick={() => handleNavigation("/postads")}
       >
         POST ADD
       </button>
