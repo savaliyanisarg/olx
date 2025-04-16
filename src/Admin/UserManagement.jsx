@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const UserManagement = () => {
-  const sellers = [
-    { id: 1, name: "John Doe", email: "john.doe@example.com" },
-    { id: 2, name: "Jane Smith", email: "jane.smith@example.com" },
-    { id: 3, name: "Michael Brown", email: "michael.brown@example.com" },
-  ];
+  const [users, setUsers] = useState([]);
 
-  const handleDeleteSeller = (id) => {
-    console.log(`Deleting seller with ID: ${id}`);
-    // Logic to delete the seller
+  const fetchUsers = () => {
+    axios.get("http://localhost:5000/api/users")
+      .then(response => setUsers(response.data))
+      .catch(error => console.error("Error fetching users:", error));
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const handleDeleteUser = (id) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      axios.delete(`http://localhost:5000/api/users/${id}`)
+        .then(() => {
+          console.log(`Deleted user with ID: ${id}`);
+          fetchUsers(); // Refresh the user list
+        })
+        .catch(error => console.error("Error deleting user:", error));
+    }
   };
 
   return (
@@ -21,17 +34,19 @@ const UserManagement = () => {
             <th style={styles.th}>ID</th>
             <th style={styles.th}>Name</th>
             <th style={styles.th}>Email</th>
+            <th style={styles.th}>Role</th>
             <th style={styles.th}>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {sellers.map((seller) => (
-            <tr key={seller.id} style={styles.tr}>
-              <td style={styles.td}>{seller.id}</td>
-              <td style={styles.td}>{seller.name}</td>
-              <td style={styles.td}>{seller.email}</td>
+          {users.map((user) => (
+            <tr key={user.id} style={styles.tr}>
+              <td style={styles.td}>{user.id}</td>
+              <td style={styles.td}>{user.name}</td>
+              <td style={styles.td}>{user.email}</td>
+              <td style={styles.td}>{user.is_admin === 1 ? "Admin" : "User"}</td>
               <td style={styles.td}>
-                <button onClick={() => handleDeleteSeller(seller.id)} style={styles.button}>Delete</button>
+                <button onClick={() => handleDeleteUser(user.id)} style={styles.button}>Delete</button>
               </td>
             </tr>
           ))}
@@ -45,8 +60,8 @@ const styles = {
   th: { padding: "10px", textAlign: "left", borderBottom: "2px solid #ddd" },
   td: { padding: "10px", textAlign: "left", borderBottom: "1px solid #ddd" },
   tr: { background: "#f9f9f9" },
-  button: { 
-    background: "red", color: "white", border: "none", padding: "5px 10px", 
+  button: {
+    background: "red", color: "white", border: "none", padding: "5px 10px",
     cursor: "pointer", borderRadius: "5px"
   }
 };

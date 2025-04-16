@@ -103,51 +103,65 @@ const EditProfile = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      setLoading(true);
-      try {
-        const token = localStorage.getItem("token");
-        const storedEmail = localStorage.getItem("email");
-        
-        if (!token || !storedEmail) {
-          throw new Error("Authentication required. Please log in again.");
-        }
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (validateForm()) {
+    setLoading(true);
 
-        const response = await axios.put(
-          "http://localhost:5000/api/profile",
-          {
-            ...formData,
-            originalEmail: storedEmail // Send original email to identify the user
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-
-        if (response.status === 200) {
-          // Update localStorage if email was changed
-          if (formData.email !== storedEmail) {
-            localStorage.setItem("email", formData.email);
-          }
-          
-          alert("Profile updated successfully!");
-          navigate("/profile");
-        } else {
-          throw new Error("Failed to update profile.");
-        }
-      } catch (error) {
-        console.error("Error updating profile:", error);
-        setApiError(
-          error.response?.data?.message || 
-          "Failed to update profile. Please try again."
-        );
-      } finally {
-        setLoading(false);
-      }
+    // Create FormData to handle file and text fields
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append("name", formData.name);
+    formDataToSubmit.append("email", formData.email);
+    formDataToSubmit.append("phone", formData.phone);
+    formDataToSubmit.append("location", formData.location);
+    formDataToSubmit.append("originalEmail", localStorage.getItem("email"));
+    
+    // Append file (if selected)
+    if (formData.profileImageFile) {
+      formDataToSubmit.append("profileImage", formData.profileImageFile);
     }
-  };
+
+    try {
+      const token = localStorage.getItem("token");
+      const storedEmail = localStorage.getItem("email");
+      
+      if (!token || !storedEmail) {
+        throw new Error("Authentication required. Please log in again.");
+      }
+
+      const response = await axios.put(
+        "http://localhost:5000/api/Editprofile",
+        formDataToSubmit,
+        {
+          headers: { 
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data"  // Ensure correct header for file upload
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        // Update localStorage if email was changed
+        if (formData.email !== storedEmail) {
+          localStorage.setItem("email", formData.email);
+        }
+        
+        alert("Profile updated successfully!");
+        navigate("/profile");
+      } else {
+        throw new Error("Failed to update profile.");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      setApiError(
+        error.response?.data?.message || 
+        "Failed to update profile. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+};
 
   const handleGoBack = () => {
     navigate(-1); // Go back to previous page

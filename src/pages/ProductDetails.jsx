@@ -8,7 +8,8 @@ const products = [
   {
     id: 1,
     name: "Honda City 2020",
-    price: "₹12,00,000",
+    price: "₹120",
+    actualPrice: 120, // Added for payment processing (in paise)
     description: "Well-maintained Honda City 2020 with single ownership. Regularly serviced and driven only 20,000 km.",
     location: "Bangalore, Karnataka",
     image: "../src/assets/car.png",
@@ -25,6 +26,7 @@ const products = [
     id: 2,
     name: "Samsung Galaxy S22",
     price: "₹80,000",
+    actualPrice: 80000,
     description: "Brand new Samsung Galaxy S22 with warranty.",
     location: "Mumbai, Maharashtra",
     image: "/assets/mobile.png",
@@ -41,6 +43,7 @@ const products = [
     id: 3,
     name: "Yamaha R15",
     price: "₹1,50,000",
+    actualPrice: 150000,
     description: "A sporty Yamaha R15 with excellent condition.",
     location: "Delhi, India",
     image: "/assets/bike.png",
@@ -55,9 +58,52 @@ const products = [
   },
 ];
 
-const SellerProfile = ({ seller }) => {
-  const handleAdvancedPayment = () => {
-    alert("Advanced Payment functionality coming soon!");
+const SellerProfile = ({ seller, product }) => {
+  const loadRazorpay = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+  const handleAdvancedPayment = async () => {
+    const isLoaded = await loadRazorpay();
+    if (!isLoaded) {
+      alert('Razorpay SDK failed to load. Are you online?');
+      return;
+    }
+
+    // In production, fetch order_id from your backend
+    const options = {
+      key: "rzp_test_7vpSzgE2o7c8Ix", // Replace with your test key
+      amount: product.actualPrice * 100, // Amount in paise
+      currency: "INR",
+      name: "Your Store",
+      description: `Payment for ${product.name}`,
+      image: "https://example.com/logo.png",
+      order_id: "", // Should come from backend in production
+      handler: function(response) {
+        alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+        // Verify payment signature with backend
+      },
+      prefill: {
+        name: "Customer Name",
+        email: "customer@example.com",
+        contact: "9999999999"
+      },
+      notes: {
+        address: "Razorpay Corporate Office"
+      },
+      theme: {
+        color: "#3399cc"
+      }
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
   };
 
   return (
@@ -75,9 +121,8 @@ const SellerProfile = ({ seller }) => {
       <button className="contact-seller-button" onClick={() => alert("Chat functionality coming soon!")}>
         CHAT WITH SELLER
       </button>
-      {/* New Advanced Payment Button */}
       <button className="advanced-payment-button" onClick={handleAdvancedPayment}>
-        MAKE ADVANCED PAYMENT
+        PAY {product.price}
       </button>
     </div>
   );
@@ -103,7 +148,6 @@ const ProductDetails = () => {
     );
   }
 
-  // Get related ads (excluding the current product)
   const relatedAds = products.filter((item) => item.id !== parseInt(id));
 
   return (
@@ -114,7 +158,6 @@ const ProductDetails = () => {
           ← Back
         </button>
 
-        {/* Product Image & Details */}
         <div className="product-main">
           <div className="product-image">
             <img src={product.image} alt={product.name} />
@@ -129,9 +172,8 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        {/* Seller Profile & Map Section */}
         <div className="seller-map-container">
-          <SellerProfile seller={product.seller} />
+          <SellerProfile seller={product.seller} product={product} />
           <div className="map-container">
             <h3>Seller Location</h3>
             <iframe
@@ -144,7 +186,6 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        {/* Related Ads Section */}
         <div className="related-ads-container">
           <h3>Related Ads</h3>
           <div className="related-ads">
@@ -158,7 +199,6 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
