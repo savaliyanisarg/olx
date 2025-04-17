@@ -25,11 +25,11 @@ const products = [
   {
     id: 2,
     name: "Samsung Galaxy S22",
-    price: "₹80,000",
-    actualPrice: 80000,
+    price: "₹8000",
+    actualPrice: 8000,
     description: "Brand new Samsung Galaxy S22 with warranty.",
     location: "Mumbai, Maharashtra",
-    image: "/assets/mobile.png",
+    image: "../src/assets/mobile.png",
     mapLocation: "https://www.google.com/maps?q=Mumbai,Maharashtra&output=embed",
     seller: {
       name: "Alice Smith",
