@@ -9,7 +9,7 @@ import LoginSignup from "./pages/login"; // Case sensitivity fixed
 import AdPostForm from "./pages/postads";
 import ProductDetails from "./pages/ProductDetails";
 import AdminPanel from "./Admin/AdminPanel";
-import Wishlist from "./pages/Wishlist"; // Added missing page
+import WishlistView from "./pages/Wishlist"; // Added missing page
 import ProfilePage from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import ContactSellerForm from "./pages/message";
@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/product/:id" element={<ProductDetails />} /> {/* Fixed typo */}
           <Route path="/payment" element={<OLXRazorpayPayment />} />
           <Route path="/Adminlogin" element={<AdminPanel />} /> 
-          <Route path="/Wishlist" element={<Wishlist />} />
+          <Route path="/Wishlist" element={<WishlistView />} />
           <Route path="/profile" element={<ProfilePage />} /> {/* Added missing page */}
           <Route path="/editprofile" element={<EditProfile />} /> {/* Added missing page */}
           <Route path="/Admin/AdminPanel" element={<AdminPanel />} /> {/* Added missing page*/}

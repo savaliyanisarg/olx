@@ -1,67 +1,92 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaHeart, FaTrash } from "react-icons/fa";
+import "../styles/Wishlist.css"; // Optional styling
 
-const Wishlist = () => {
+const WishlistView = () => {
   const [wishlist, setWishlist] = useState([]);
-  const navigate = useNavigate(); // Initialize navigation
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
 
-  // Load wishlist from localStorage on mount
+  // Get full image URL
+  const getImageUrl = (imagePath) => {
+    if (imagePath.startsWith("http")) return imagePath;
+    const cleanPath = imagePath.replace(/\.\.\/\.\.\/Server\//, "");
+    return `http://localhost:5000/${cleanPath}`;
+  };
+
+  // Fetch wishlist items
+  const fetchWishlist = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/wishlist?userId=${userId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+      const data = await response.json();
+      setWishlist(data);
+    } catch (error) {
+      console.error("Error loading wishlist:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const savedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    setWishlist(savedWishlist);
+    fetchWishlist();
   }, []);
 
   // Remove item from wishlist
-  const removeFromWishlist = (id) => {
-    const updatedWishlist = wishlist.filter((item) => item.id !== id);
-    setWishlist(updatedWishlist);
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist)); // Update localStorage
+  const removeFromWishlist = async (productId) => {
+    try {
+      await fetch(`http://localhost:5000/api/wishlist/${productId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ userId })
+      });
+      setWishlist(wishlist.filter((item) => item.id !== productId));
+    } catch (error) {
+      console.error("Error removing from wishlist:", error);
+    }
   };
 
+  if (loading) return <div>Loading wishlist...</div>;
+
   return (
-    <div style={{ maxWidth: "600px", margin: "auto", padding: "20px" }}>
-      <h2>My Wishlist</h2>
+    <div className="wishlist-container">
+      <h2>Your Wishlist</h2>
       {wishlist.length === 0 ? (
-        <p>Your wishlist is empty.</p>
+        <p>No items in wishlist.</p>
       ) : (
-        <ul style={{ listStyle: "none", padding: 0 }}>
+        <div className="wishlist-grid">
           {wishlist.map((item) => (
-            <li
-              key={item.id}
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "10px",
-                border: "1px solid #ddd",
-                borderRadius: "5px",
-                marginBottom: "10px",
-                cursor: "pointer",
-              }}
-              onClick={() => navigate(`/product/${item.id}`)} // Navigate to product detail page
-            >
-              <span>{item.name} - ₹{item.price.toLocaleString()}</span>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent navigation when clicking remove button
-                  removeFromWishlist(item.id);
-                }}
-                style={{
-                  background: "red",
-                  color: "white",
-                  border: "none",
-                  padding: "5px 10px",
-                  cursor: "pointer",
-                }}
-              >
-                Remove
-              </button>
-            </li>
+            <div key={item.id} className="wishlist-card">
+              <img
+                src={getImageUrl(item.image)}
+                alt={item.title}
+                className="wishlist-image"
+                onClick={() => navigate(`/product/${item.id}`)}
+              />
+              <h4>{item.title}</h4>
+              <p>₹{item.price.toLocaleString()}</p>
+              <div className="wishlist-actions">
+                <button
+                  onClick={() => removeFromWishlist(item.id)}
+                  className="wishlist-remove"
+                >
+                  <FaTrash /> Remove
+                </button>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
 };
 
-export default Wishlist;
+export default WishlistView;
